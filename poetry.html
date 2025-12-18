@@ -17,6 +17,7 @@
       min-height:100vh;
       background: linear-gradient(180deg, #f4d6dc 0%, #e9bfc9 40%, #d9a3a0 75%, #c08b7f 100%);
       color:#2a1416;
+      padding-bottom: 50px;
     }
 
     /* ---------- NAV ---------- */
@@ -28,6 +29,9 @@
       background: rgba(255,255,255,0.55);
       backdrop-filter: blur(12px);
       border-bottom:1px solid rgba(200,150,150,0.25);
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
 
     .nav h1{
@@ -41,13 +45,10 @@
     }
 
     .nav-links a{
-      background:none;
-      border:none;
       color:#3a1c1f;
       font-size:0.95rem;
-      cursor:pointer;
-      opacity:0.75;
       text-decoration:none;
+      opacity:0.75;
     }
 
     .nav-links a:hover{
@@ -57,9 +58,9 @@
 
     /* ---------- CONTENT ---------- */
     .content{
-      max-width:900px;
+      max-width:800px;
       margin:auto;
-      padding:45px 28px;
+      padding:45px 20px;
     }
 
     .intro{
@@ -68,141 +69,122 @@
     }
 
     .intro h2{
-      font-size:1.6rem;
+      font-size:1.8rem;
       margin-bottom:10px;
       font-weight:normal;
     }
 
-    .intro p{
-      font-size:0.95rem;
-      opacity:0.75;
-    }
-
-    /* ---------- POETRY CARD ---------- */
+    /* ---------- POETRY EDITOR ---------- */
     #poetryCard{
-      background: linear-gradient(160deg, rgba(255,255,255,0.75), rgba(255,245,248,0.6));
+      background: rgba(255, 255, 255, 0.7);
       backdrop-filter: blur(14px);
-      border-radius:26px;
-      padding:34px 28px 30px;
-      border:1px solid rgba(210,150,150,0.35);
-      margin-bottom:40px;
-    }
-
-    #poetryCard textarea{
-      width:100%;
-      height:200px; /* bigger textarea */
-      border-radius:12px;
-      border:1px solid rgba(210,150,150,0.5);
-      padding:10px;
-      font-family:'Georgia', serif;
-      font-size:0.95rem;
-      resize:none;
-    }
-
-    #poetryCard button{
-      margin-top:10px;
-      padding:10px 20px;
       border-radius:20px;
+      padding:25px;
+      border:1px solid rgba(210,150,150,0.3);
+      margin-bottom:40px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    }
+
+    .author-toggle {
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    #authorSelect {
+      padding: 6px 12px;
+      border-radius: 8px;
+      border: 1px solid rgba(210,150,150,0.5);
+      background: white;
+      font-size: 0.9rem;
+      outline: none;
+      cursor: pointer;
+    }
+
+    #poemInput{
+      width:100%;
+      height:150px;
+      border-radius:12px;
+      border:1px solid rgba(210,150,150,0.3);
+      padding:15px;
+      font-size:1rem;
+      resize:none;
+      background: rgba(255,255,255,0.5);
+      outline: none;
+      line-height: 1.6;
+    }
+
+    #savePoem{
+      margin-top:15px;
+      padding:12px 25px;
+      border-radius:25px;
       border:none;
       background: linear-gradient(135deg, #d78c96, #f0c4a5);
-      color:#2a1416;
+      color:#fff;
+      font-weight: bold;
       cursor:pointer;
+      transition: opacity 0.2s;
     }
 
-    #poemsList{
-      margin-top:20px;
-      max-height:400px;
-      overflow-y:auto;
+    #savePoem:hover { opacity: 0.9; }
+
+    /* ---------- POEM LIST ---------- */
+    .poem-entry {
+      background: white;
+      border-radius: 15px;
+      padding: 25px;
+      margin-bottom: 20px;
+      position: relative;
+      border: 1px solid rgba(210,150,150,0.2);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.03);
     }
 
-    #poemsList div{
-      border:1px solid rgba(210,150,150,0.35);
-      border-radius:12px;
-      padding:12px;
-      margin-bottom:10px;
-      background: rgba(255,245,248,0.6);
-      position:relative;
+    .author-badge {
+      display: inline-block;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 3px 10px;
+      border-radius: 5px;
+      margin-bottom: 12px;
+      font-weight: bold;
     }
 
-    #poemsList div button{
-      position:absolute;
-      top:10px;
-      right:10px;
-      border:none;
-      background:transparent;
-      color:#c77d87;
-      cursor:pointer;
-      font-size:0.85rem;
+    .badge-him { background: #e2e2e2; color: #555; }
+    .badge-her { background: #ffdce3; color: #a35d6a; }
+
+    .poem-text {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      white-space: pre-wrap;
+      color: #333;
     }
 
-    /* ---------- CARDS ---------- */
-    .cards{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
-      gap:26px;
-      margin-top:40px;
+    .poem-date {
+      font-size: 0.8rem;
+      color: #999;
+      margin-top: 15px;
     }
 
-    .card{
-      position:relative;
-      background: linear-gradient(160deg, rgba(255,255,255,0.75), rgba(255,245,248,0.6));
-      backdrop-filter: blur(14px);
-      border-radius:26px;
-      padding:34px 28px 30px;
-      border:1px solid rgba(210,150,150,0.35);
-      transition:transform 0.35s ease, box-shadow 0.35s ease;
-      cursor:pointer;
-      overflow:hidden;
+    .del-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: none;
+      border: none;
+      color: #ddd;
+      cursor: pointer;
+      font-size: 1.2rem;
     }
 
-    .card::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      background: radial-gradient(circle at top left, rgba(255,200,210,0.45), transparent 60%);
-      opacity:0.6;
-      pointer-events:none;
-    }
+    .del-btn:hover { color: #c77d87; }
 
-    .card:hover{
-      transform:translateY(-6px);
-      box-shadow:0 18px 35px rgba(120,60,60,0.25);
-    }
-
-    .card h3{
-      font-size:1.25rem;
-      margin-bottom:12px;
-      font-weight:normal;
-      position:relative;
-    }
-
-    .card h3::after{
-      content:"";
-      display:block;
-      width:32px;
-      height:2px;
-      background: linear-gradient(90deg, #c77d87, transparent);
-      margin-top:8px;
-      opacity:0.7;
-    }
-
-    .card p{
-      font-size:0.92rem;
-      line-height:1.7;
-      opacity:0.85;
-    }
-
-    footer{
-      margin-top:40px;
-      text-align:center;
-      font-size:0.8rem;
-      opacity:0.6;
-    }
+    footer{ text-align:center; font-size:0.8rem; opacity:0.6; margin-top: 20px; }
   </style>
 </head>
 <body>
 
-  <!-- NAVIGATION -->
   <div class="nav">
     <h1>Between Us</h1>
     <div class="nav-links">
@@ -214,85 +196,110 @@
     </div>
   </div>
 
-  <!-- POETRY CONTENT -->
   <div class="content">
     <div class="intro">
       <h2>Our Shared Poems</h2>
-      <p>Write your poems here. They stay safe and can be read anytime.</p>
+      <p>A space for the words we find for each other.</p>
     </div>
 
     <div id="poetryCard">
-      <textarea id="poemInput" placeholder="Write your poem..."></textarea>
-      <button id="savePoem">Save Poem</button>
-      <div id="poemsList"></div>
+      <div class="author-toggle">
+        <span>From:</span>
+        <select id="authorSelect">
+          <option value="Him">Him</option>
+          <option value="Her">Her</option>
+        </select>
+      </div>
+      <textarea id="poemInput" placeholder="Write something from the heart..."></textarea>
+      <button id="savePoem">Save to Archive</button>
     </div>
 
-    <!-- CARDS BELOW -->
-    <div class="cards">
-      <div class="card" onclick="window.location.href='memories.html'">
-        <h3>Memories</h3>
-        <p>A gentle archive of photos, words, and moments that deserve to stay.</p>
-      </div>
-      <div class="card" onclick="window.location.href='study.html'">
-        <h3>Study Dock</h3>
-        <p>Different goals, same effort. A quiet check-in for honest days.</p>
-      </div>
-      <div class="card" onclick="window.location.href='tree.html'">
-        <h3>Year of Hearts</h3>
-        <p>Slowly but steadily through the years.</p>
-      </div>
-      <div class="card" onclick="window.location.href='lm.html'">
-        <h3>Love Meter</h3>
-        <p>Growing patiently with time, care, and days survived together.</p>
-      </div>
-    </div>
+    <div id="poemsList"></div>
 
-    <footer>
-      growing gently 🌱
-    </footer>
+    <footer>growing gently 🌱</footer>
   </div>
 
-  <script>
-    // ---------- POETRY FUNCTIONALITY ----------
+  <script type="module">
+    // 1. MODERN FIREBASE MODULE IMPORTS
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
+    import { getDatabase, ref, push, onValue, remove } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-database.js";
+
+    // 2. YOUR FIREBASE CONFIGURATION
+    const firebaseConfig = {
+      apiKey: "AIzaSyAgqdRnE-xxv-fAfUOrxGSbfS1AHGVSvzA",
+      authDomain: "betweenus-f0965.firebaseapp.com",
+      databaseURL: "https://betweenus-f0965-default-rtdb.firebaseio.com/",
+      projectId: "betweenus-f0965",
+      storageBucket: "betweenus-f0965.firebasestorage.app",
+      messagingSenderId: "1055124580872",
+      appId: "1:1055124580872:web:f6dcb2759a5e1bc57abfbd",
+      measurementId: "G-P7B1NDX9BL"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const database = getDatabase(app);
+    const poemsRef = ref(database, 'poems');
+
     const poemInput = document.getElementById('poemInput');
     const savePoem = document.getElementById('savePoem');
     const poemsList = document.getElementById('poemsList');
+    const authorSelect = document.getElementById('authorSelect');
 
-    let poems = JSON.parse(localStorage.getItem('poems')) || [];
-
-    function renderPoems(){
+    // 3. RENDER POEMS FROM FIREBASE (Realtime)
+    onValue(poemsRef, (snapshot) => {
+      const data = snapshot.val();
       poemsList.innerHTML = '';
-      poems.forEach((p,i)=>{
-        const div = document.createElement('div');
+      
+      if (data) {
+        const entries = Object.entries(data).sort((a, b) => b[1].timestamp - a[1].timestamp);
 
-        const content = document.createElement('p');
-        content.textContent = p;
-        content.style.whiteSpace = 'pre-wrap';
-        div.appendChild(content);
+        entries.forEach(([id, p]) => {
+          const div = document.createElement('div');
+          div.className = 'poem-entry';
+          const badgeClass = p.author === 'Him' ? 'badge-him' : 'badge-her';
+          const date = new Date(p.timestamp).toLocaleDateString(undefined, { 
+            month: 'short', day: 'numeric', year: 'numeric', hour: '2-digit', minute: '2-digit' 
+          });
 
-        const delBtn = document.createElement('button');
-        delBtn.textContent = 'Delete';
-        delBtn.onclick = ()=>{
-          poems.splice(i,1);
-          localStorage.setItem('poems', JSON.stringify(poems));
-          renderPoems();
-        }
-        div.appendChild(delBtn);
+          div.innerHTML = `
+            <span class="author-badge ${badgeClass}">${p.author}</span>
+            <button class="del-btn" data-id="${id}">✕</button>
+            <div class="poem-text">${p.text}</div>
+            <div class="poem-date">${date}</div>
+          `;
 
-        poemsList.appendChild(div);
-      });
-    }
+          // Add click event for delete button
+          div.querySelector('.del-btn').addEventListener('click', () => {
+             if(confirm("Are you sure you want to remove this poem?")) {
+                const itemRef = ref(database, 'poems/' + id);
+                remove(itemRef);
+             }
+          });
 
-    savePoem.onclick = ()=>{
+          poemsList.appendChild(div);
+        });
+      }
+    });
+
+    // 4. SAVE POEM
+    savePoem.onclick = () => {
       const text = poemInput.value.trim();
-      if(text==='') return;
-      poems.push(text);
-      localStorage.setItem('poems', JSON.stringify(poems));
-      poemInput.value='';
-      renderPoems();
-    }
+      const author = authorSelect.value;
+      
+      if (text === '') return;
 
-    renderPoems();
+      push(poemsRef, {
+        text: text,
+        author: author,
+        timestamp: Date.now()
+      }).then(() => {
+        poemInput.value = '';
+      }).catch((error) => {
+        console.error("Error saving poem:", error);
+        alert("Make sure your Firebase Database rules are set to public!");
+      });
+    };
   </script>
 </body>
 </html>
