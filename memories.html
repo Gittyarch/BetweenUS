@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Little Universe</title>
+
+<style>
+:root {
+  --bg: #f7e2ec;
+  --accent: #d78ca3;
+  --text: #4a3b3b;
+  --shadow: rgba(0,0,0,0.1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Georgia, serif;
+}
+
+body {
+  background: linear-gradient(180deg, #f8e6ec, #f3d9e3);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+/* ================= NAV ================= */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 40px;
+  background: rgba(255,255,255,0.6);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 5px 20px var(--shadow);
+}
+
+/* ==== ANIMATED TITLE ==== */
+.universe-title {
+  position: relative;
+  font-size: 1.8rem;
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.universe-title span {
+  opacity: 0;
+}
+
+.universe-title .our {
+  animation: fadeIn 1s forwards;
+}
+
+.universe-title .little {
+  animation: floatIn 1.3s forwards;
+  animation-delay: 0.4s;
+}
+
+.universe-title .universe {
+  animation: glowIn 1.6s forwards;
+  animation-delay: 0.8s;
+  color: #d77a9c;
+  text-shadow: 0 0 10px rgba(215,140,163,0.4);
+}
+
+.stars span {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: rgba(255,255,255,0.8);
+  border-radius: 50%;
+  animation: floatStar 6s infinite ease-in-out;
+}
+
+.stars span:nth-child(1) { top: -8px; left: 10px; }
+.stars span:nth-child(2) { top: 10px; right: -10px; animation-delay: 1s; }
+.stars span:nth-child(3) { bottom: -6px; left: 20px; animation-delay: 2s; }
+.stars span:nth-child(4) { top: -12px; right: 30px; animation-delay: 3s; }
+.stars span:nth-child(5) { bottom: -8px; right: 5px; animation-delay: 4s; }
+
+@keyframes fadeIn { to { opacity: 1; } }
+@keyframes floatIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes glowIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes floatStar {
+  0%,100% { transform: translateY(0); opacity: .6; }
+  50% { transform: translateY(-6px); opacity: 1; }
+}
+
+/* NAV LINKS */
+.nav-links a {
+  margin-left: 20px;
+  text-decoration: none;
+  color: var(--text);
+  opacity: 0.75;
+}
+.nav-links a:hover { opacity: 1; }
+
+/* SECTION */
+.section-title {
+  text-align: center;
+  margin: 50px 0 25px;
+  font-size: 1.4rem;
+}
+
+/* CARDS */
+.carousel-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 50px;
+}
+.carousel {
+  display: flex;
+  gap: 30px;
+}
+.card {
+  width: 200px;
+  height: 160px;
+  border-radius: 18px;
+  background: linear-gradient(145deg, #ffffff, #f3dbe4);
+  box-shadow: 0 12px 25px var(--shadow);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.4s;
+}
+.card:hover { transform: translateY(-6px) scale(1.05); }
+
+.icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: rgba(215,140,163,0.25);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 28px;
+}
+.photo::before { content: "📷"; }
+.video::before { content: "🎥"; }
+.audio::before { content: "🎧"; }
+
+/* DIARY BUTTON */
+.diary-toggle {
+  display: block;
+  margin: 70px auto 30px;
+  padding: 22px 60px;
+  border-radius: 40px;
+  border: none;
+  background: linear-gradient(135deg, #e6a1b4, #d77a9c);
+  color: white;
+  font-size: 1.2rem;
+  cursor: pointer;
+  box-shadow: 0 12px 25px rgba(215,140,163,0.6);
+}
+
+/* DIARY */
+.diary-wrapper {
+  max-width: 760px;
+  margin: 0 auto 80px;
+  padding: 30px;
+  background: rgba(255,255,255,0.45);
+  border-radius: 30px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+  display: none;
+}
+
+.diary-header {
+  text-align: center;
+  font-size: 1.7rem;
+  margin-bottom: 20px;
+}
+
+.diary-page {
+  background: #fffaf5;
+  border-radius: 20px;
+  padding: 30px;
+  height: 360px;
+  position: relative;
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,0.05);
+}
+
+.diary-page::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent,
+    transparent 26px,
+    rgba(0,0,0,0.15) 27px
+  );
+  pointer-events: none;
+}
+
+.diary-date {
+  text-align: right;
+  font-size: 0.9rem;
+  opacity: 0.7;
+  cursor: pointer;
+}
+
+.diary-text {
+  width: 100%;
+  height: 250px;
+  border: none;
+  background: transparent;
+  resize: none;
+  outline: none;
+  font-size: 1rem;
+  line-height: 1.9;
+  margin-top: 10px;
+}
+
+.diary-controls {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.diary-controls button {
+  padding: 10px 22px;
+  border-radius: 20px;
+  border: none;
+  background: rgba(215,140,163,0.35);
+  cursor: pointer;
+}
+
+.page-number {
+  position: absolute;
+  bottom: 15px;
+  right: 25px;
+  font-size: 0.85rem;
+  opacity: 0.6;
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <div class="universe-title">
+    <span class="our">Our</span>
+    <span class="little">Little</span>
+    <span class="universe">Universe</span>
+    <div class="stars">
+      <span></span><span></span><span></span><span></span><span></span>
+    </div>
+  </div>
+
+  <div class="nav-links">
+    <a href="main.html">Home</a>
+    <a href="poetry.html">Poetry</a>
+    <a href="tree.html">Year of Hearts</a>
+    <a href="lm.html">Love Meter</a>
+  </div>
+</nav>
+
+<div class="section-title">Chini 🌍</div>
+<div class="carousel-wrapper">
+  <div class="carousel">
+    <div class="card"><div class="icon photo"></div></div>
+    <div class="card"><div class="icon video"></div></div>
+    <div class="card"><div class="icon audio"></div></div>
+  </div>
+</div>
+
+<div class="section-title">Satu 🐿️</div>
+<div class="carousel-wrapper">
+  <div class="carousel">
+    <div class="card"><div class="icon photo"></div></div>
+    <div class="card"><div class="icon video"></div></div>
+    <div class="card"><div class="icon audio"></div></div>
+  </div>
+</div>
+
+<button class="diary-toggle" onclick="toggleDiary()">📖 Open Our Diary</button>
+
+<div class="diary-wrapper" id="diaryBox">
+  <div class="diary-header">Our Diary</div>
+
+  <div class="diary-page">
+    <div class="diary-date" id="date" onclick="openDatePicker()"></div>
+    <input type="date" id="datePicker" style="position:absolute; opacity:0;">
+    <textarea id="diaryText" class="diary-text" placeholder="Write your heart here..."></textarea>
+    <div class="page-number" id="pageNum"></div>
+  </div>
+
+  <div class="diary-controls">
+    <button onclick="prevPage()">← Prev</button>
+    <button onclick="savePage()">Save</button>
+    <button onclick="nextPage()">Next →</button>
+  </div>
+</div>
+
+<script>
+let diary = JSON.parse(localStorage.getItem("diaryPages")) || {};
+let currentDate = new Date();
+
+function getDayOfYear(date) {
+  const start = new Date(date.getFullYear(), 0, 1);
+  return Math.floor((date - start) / 86400000) + 1;
+}
+
+function loadPage() {
+  const key = currentDate.toISOString().split("T")[0];
+  document.getElementById("diaryText").value = diary[key] || "";
+  document.getElementById("date").innerText = currentDate.toDateString();
+  document.getElementById("pageNum").innerText = "Day " + getDayOfYear(currentDate);
+}
+
+function savePage() {
+  const key = currentDate.toISOString().split("T")[0];
+  diary[key] = document.getElementById("diaryText").value;
+  localStorage.setItem("diaryPages", JSON.stringify(diary));
+  alert("Saved 💗");
+}
+
+function nextPage() {
+  currentDate.setDate(currentDate.getDate() + 1);
+  loadPage();
+}
+
+function prevPage() {
+  currentDate.setDate(currentDate.getDate() - 1);
+  loadPage();
+}
+
+function openDatePicker() {
+  const picker = document.getElementById("datePicker");
+  picker.value = currentDate.toISOString().split("T")[0];
+  if (picker.showPicker) picker.showPicker();
+  else picker.focus();
+}
+
+document.getElementById("datePicker").addEventListener("change", e => {
+  currentDate = new Date(e.target.value);
+  loadPage();
+});
+
+function toggleDiary() {
+  const box = document.getElementById("diaryBox");
+  box.style.display = box.style.display === "none" ? "block" : "none";
+}
+
+loadPage();
+</script>
+
+</body>
+</html>
